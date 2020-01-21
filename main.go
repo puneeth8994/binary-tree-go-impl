@@ -30,6 +30,10 @@ func main() {
 	t.Delete(7)
 
 	t.PrintInorder()
+	fmt.Println("")
+
+	fmt.Println("min is %d", t.FindMin())
+	fmt.Println("max is %d", t.FindMax())
 }
 
 //PrintInorder prints the elements in order
@@ -134,17 +138,33 @@ func (t *TreeNode) remove(value int) *TreeNode {
 		return t
 	}
 
-	leftmostrightside := t.right
+	smallestValOnRight := t.right
 	for {
 		//find smallest value on the right side
-		if leftmostrightside != nil && leftmostrightside.left != nil {
-			leftmostrightside = leftmostrightside.left
+		if smallestValOnRight != nil && smallestValOnRight.left != nil {
+			smallestValOnRight = smallestValOnRight.left
 		} else {
 			break
 		}
 	}
 
-	t.val = leftmostrightside.val
+	t.val = smallestValOnRight.val
 	t.right = t.right.remove(t.val)
 	return t
+}
+
+//FindMax finds the max element in the given BST
+func (t *TreeNode) FindMax() int {
+	if t.right == nil {
+		return t.val
+	}
+	return t.right.FindMax()
+}
+
+//FindMin finds the min element in the given BST
+func (t *TreeNode) FindMin() int {
+	if t.left == nil {
+		return t.val
+	}
+	return t.left.FindMin()
 }
