@@ -32,8 +32,8 @@ func main() {
 	t.PrintInorder()
 	fmt.Println("")
 
-	fmt.Println("min is %d", t.FindMin())
-	fmt.Println("max is %d", t.FindMax())
+	fmt.Printf("min is %d", t.FindMin())
+	fmt.Printf("max is %d", t.FindMax())
 }
 
 //PrintInorder prints the elements in order
